@@ -1,0 +1,16 @@
+<h1> Add item to <%= @list.name %>: </h1>
+<%= form_for [@list,@item] do |f| %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+ </br >
+ <%= f.label :url %>
+ <%= f.text_field :url %>
+  </br >
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  </br >
+ <%= f.hidden_field :list_id, :value => @list.id %>
+ <%= f.hidden_field :bought, :value => false %>
+ </br >
+ <%= f.submit "Add Item"%>
+<% end %>

@@ -1,0 +1,6 @@
+<%= form_for [@group,@member] do |f| %>
+ <%= f.hidden_field :name, :value => session[:username] %>
+ <%= f.hidden_field :group_id, :value => params[:group_id] %>
+ <%= f.hidden_field :admin, :value => "false" %>
+ <%= f.submit "confirm" %>
+<% end %>

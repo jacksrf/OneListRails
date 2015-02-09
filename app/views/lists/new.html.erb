@@ -1,0 +1,13 @@
+<%= form_for @list do |f| %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+ </br >
+ <%= f.hidden_field :user_id, :value => session[:user_id] %>
+ </br >
+ <%= f.submit "Add List"%>
+<% end %>
+<ul>
+  <% @list.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>

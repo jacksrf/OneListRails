@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  creator_id: 1
+  single_list: false
+  multi_list: false
+
+two:
+  name: MyText
+  creator_id: 1
+  single_list: false
+  multi_list: false

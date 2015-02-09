@@ -1,0 +1,17 @@
+<%= form_for @group do |f| %>
+ <%= f.label :name %>
+ <%= f.text_field :name %>
+ </br >
+ <%= f.check_box :single_list %>
+ <%= f.label :single_list %>
+ <%= f.check_box :multi_list %>
+ <%= f.label :multi_list %>
+ <%= f.hidden_field :creator_id, :value => session[:user_id] %>
+ </br >
+ <%= f.submit "Add Group"%>
+<% end %>
+<ul>
+  <% @group.errors.full_messages.each do |msg| %>
+  <li><%= msg %></li>
+  <% end %>
+</ul>

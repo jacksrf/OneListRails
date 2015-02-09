@@ -1,0 +1,68 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">OneList.</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div id="main-container" class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+      <%= form_for @user do |f| %>
+       <%= f.label :username %>
+       <%= f.text_field :username %>
+       </br >
+       <%= f.label :password %>
+       <%= f.password_field :password %>
+       </br >
+       <%= f.label :first_name %>
+       <%= f.text_field :first_name %>
+       </br >
+       <%= f.label :last_name %>
+       <%= f.text_field :last_name %>
+       </br >
+       <%= f.label :address %>
+       <%= f.text_field :address %>
+       </br >
+       <%= f.label :address2 %>
+       <%= f.text_field :address2 %>
+       </br >
+       <%= f.label :city %>
+       <%= f.text_field :city %>
+       </br >
+       <%= f.label :state %>
+       <%= f.text_field :state %>
+       </br >
+       <%= f.label :zip %>
+       <%= f.text_field :zip %>
+       </br >
+       <%= f.label :email %>
+       <%= f.email_field :email %>
+       </br >
+       <%= f.label :phone %>
+       <%= f.telephone_field :phone %>
+       </br >
+       <%= f.submit "Sign Up"%>
+      <% end %>
+    </div>
+  </div>
+</div>
