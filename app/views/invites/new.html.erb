@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -17,7 +17,6 @@
         <li><%= link_to "ADD A LIST", new_list_path %></li>
         <li><%= link_to "ADD A GROUP", new_group_path %></li>
         <li><%= link_to "HOME", lists_path %></li>
-
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -31,12 +30,12 @@
           </ul>
         </li> -->
       </ul>
-      <form id="logout" class="navbar-form navbar-right" method="POST" action="/session">
-        <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
-        <input name="_method" value="DELETE" type="hidden">
-        <button class="btn btn-default">Logout</button>
-      </form>
-      <div id="username" class="navbar-form navbar-right">Welcome!  <%= session[:username] %></div>
+        <form id="logout" class="navbar-form navbar-right" method="POST" action="/session">
+          <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+          <input name="_method" value="DELETE" type="hidden">
+          <button class="btn btn-default">Logout</button>
+        </form>
+        <div id="username" class="navbar-form navbar-right">Welcome!  <%= session[:username] %></div>
       <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -46,6 +45,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
 
 <div id="main-container" class="container-fluid">
       <div class="row">
