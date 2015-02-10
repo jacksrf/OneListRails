@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   put 'lists/:id/items/:id' => 'items#update'
 
   get '/admin' => 'users#index'
+  get '/admin/edit' => 'users#edit'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
