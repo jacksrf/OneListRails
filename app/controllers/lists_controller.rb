@@ -6,6 +6,7 @@ class ListsController < ApplicationController
       @user = User.find_by(id: session[:user_id])
       @invites = Invite.where(email: @user.email)
       @members = Member.where(name: session[:username])
+      @items = Item.where(user_id: session[:user_id])
     else
       redirect_to '/login'
     end
@@ -15,11 +16,15 @@ class ListsController < ApplicationController
     @list = List.find_by(id: params[:id])
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
+    @members = Member.where(name: session[:username])
     @items = @list.items
   end
 
   def new
     @list = List.new
+    @lists = List.where(user_id: session[:user_id])
+    @members = Member.where(name: params[:username])
+    @groups = Group.where(creator_id: session[:user_id])
   end
 
   def create

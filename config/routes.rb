@@ -14,11 +14,12 @@ Rails.application.routes.draw do
     resources :invites
     resources :members
   end
-
+  resources :invites
 
   get '/login' => 'session#new'
   post '/session' => 'session#create'
   delete '/session' => 'session#destroy'
+  put 'lists/:id/items/:id' => 'items#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
