@@ -1,0 +1,9 @@
+<% @users = User.all %>
+<% @users.each do |user| %>
+    <div class="row">
+      <div class="col-md-1"><%= user.username %></div>
+      <div class="col-md-1"><%= user.first_name %></div>
+      <div class="col-md-1"><%= user.last_name %></div>
+      <div class="col-md-1"><%= user.email %></div>
+    </div>
+  <% end %>

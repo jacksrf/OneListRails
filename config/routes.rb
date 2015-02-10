@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post '/session' => 'session#create'
   delete '/session' => 'session#destroy'
   put 'lists/:id/items/:id' => 'items#update'
+
+  get '/admin' => 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
