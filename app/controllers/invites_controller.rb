@@ -14,7 +14,6 @@ def create
   puts "start"
   # Pony.mail(:to => "jacksrf@gmail.com" , :from => 'admin@onelist.com', :subject => 'You were invited to a Group!', :body => "You were invited to group: " + @group.name + " by: " + @user.username + "! Login to accept or decline!" )
   puts "finish"
-  binding.pry
   redirect_to group_path(params[:group_id])
 end
 
