@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   resources :groups do
     resources :invites
     resources :members
+    resources :multi_lists
   end
   resources :invites
+  resources :multi_lists
 
   get '/login' => 'session#new'
   post '/session' => 'session#create'

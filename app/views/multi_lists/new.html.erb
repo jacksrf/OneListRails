@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -16,7 +16,9 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "ADD A LIST", new_list_path %></li>
         <li><%= link_to "ADD A GROUP", new_group_path %></li>
+        <li><%= link_to "INVITES", invites_path %></li>
         <li><%= link_to "HOME", lists_path %></li>
+
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -30,12 +32,12 @@
           </ul>
         </li> -->
       </ul>
-        <form id="logout" class="navbar-form navbar-right" method="POST" action="/session">
-          <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
-          <input name="_method" value="DELETE" type="hidden">
-          <button class="btn btn-default">Logout</button>
-        </form>
-        <div id="username" class="navbar-form navbar-right">Welcome!  <%= session[:username] %></div>
+      <form id="logout" class="navbar-form navbar-right" method="POST" action="/session">
+        <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+        <input name="_method" value="DELETE" type="hidden">
+        <button class="btn btn-default">Logout</button>
+      </form>
+      <div id="username" class="navbar-form navbar-right">Welcome!  <%= session[:username] %></div>
       <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -50,21 +52,14 @@
       <div class="row">
 
         <div id="main-content" class="col-md-10">
-          <%= form_for @list do |f| %>
-           <%= f.label :name %>
-           <%= f.text_field :name %>
-           </br >
+          <%= form_for [@group,@multiList] do |f| %>
            <%= f.hidden_field :user_id, :value => session[:user_id] %>
-           </br >
-           <%= f.submit "Add List"%>
+           <%= f.hidden_field :group_id, :value => params[:group_id] %>
+           <%= f.label :list_id %>
+           <%= f.select :list_id, options_for_seasons, :prompt => "Please select" %>
+           <%= f.submit "confirm" %>
           <% end %>
-          <ul>
-            <% @list.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-
+          </div>
 
 
         <div id="sidebar" class="col-md-2">
@@ -99,4 +94,3 @@
         </div>
         </div>
         </div>
-        

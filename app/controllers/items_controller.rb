@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
     @item = Item.create(item_params)
-    binding.pry
     redirect_to list_path(@list)
   end
 
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
       @item.bought_id = nil
       @item.save
     end
-    redirect_to group_path(@group)
+    redirect_to :back
 
   end
 
@@ -38,7 +37,6 @@ class ItemsController < ApplicationController
     @item = Item.find_by(id: params[:id])
     @group = Group.find_by(list_id: params[:list_id])
     @item.destroy
-    binding.pry
     redirect_to :back
   end
 

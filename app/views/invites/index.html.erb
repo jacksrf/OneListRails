@@ -16,7 +16,9 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "ADD A LIST", new_list_path %></li>
         <li><%= link_to "ADD A GROUP", new_group_path %></li>
+        <li><%= link_to "INVITES", invites_path %></li>
         <li><%= link_to "HOME", lists_path %></li>
+
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -48,25 +50,19 @@
 
 <div id="main-container" class="container-fluid">
       <div class="row">
-
-        <div id="main-content" class="col-md-10">
-          <%= form_for @list do |f| %>
-           <%= f.label :name %>
-           <%= f.text_field :name %>
-           </br >
-           <%= f.hidden_field :user_id, :value => session[:user_id] %>
-           </br >
-           <%= f.submit "Add List"%>
-          <% end %>
+        <div id="main-content" class="col-md-9 col-md-offset-1">
+          <% if !@invites.empty? %>
+          <h4>You have invites: </h4>
           <ul>
-            <% @list.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+          <% @invites.each do |invite| %>
+              <% group = Group.find_by(id: invite.group_id) %>
+              <li><%= group.name %></li>
+              <%= link_to "accept", new_group_member_path(group) %>
+              <%= link_to "decline", group_invite_path(group,invite), :confirm => "Are you sure?", :method=>"delete" %>
             <% end %>
           </ul>
+          <% end %>
         </div>
-
-
-
         <div id="sidebar" class="col-md-2">
           <div class="well well-large">
             <h4>Lists: </h4>
@@ -89,6 +85,7 @@
             <ul class="nav nav-pills">
             <% @members.each do |member| %>
               <% group = Group.find_by(id: member.group_id) %>
+              <% binding.pry %>
                 <li><%= link_to group.name, group_path(group.id) %></li>
 
               <% end %>
@@ -99,4 +96,3 @@
         </div>
         </div>
         </div>
-        

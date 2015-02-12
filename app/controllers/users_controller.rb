@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    redirect_to '/'
+    if @user.save
+      redirect_to '/'
+    else
+      render :new
+    end
   end
 
   def edit
@@ -14,13 +18,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user = User.update(user_params)
+    @user = User.update(user_update_params)
     redirect_to '/admin'
   end
 
   private
     def user_params
       params.require(:user).permit(:username, :password, :first_name, :last_name, :address, :address2, :city, :state, :zip, :email, :phone)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:username, :first_name, :last_name, :address, :address2, :city, :state, :zip, :email, :phone)
     end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210030526) do
+ActiveRecord::Schema.define(version: 20150212012745) do
 
   create_table "groups", force: :cascade do |t|
     t.text     "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150210030526) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "list_id"
+    t.text     "subtitle"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150210030526) do
     t.datetime "updated_at", null: false
     t.text     "email"
     t.text     "name"
+    t.boolean  "multi_list"
   end
 
   create_table "items", force: :cascade do |t|
@@ -56,6 +58,15 @@ ActiveRecord::Schema.define(version: 20150210030526) do
     t.integer  "group_id"
     t.integer  "list_id"
     t.boolean  "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "multi_lists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.integer  "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
