@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150212012745) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "groups", force: :cascade do |t|
     t.text     "name"
     t.integer  "creator_id"
@@ -87,4 +90,7 @@ ActiveRecord::Schema.define(version: 20150212012745) do
     t.text     "phone"
   end
 
+  add_foreign_key "items", "lists"
+  add_foreign_key "lists", "users"
+  add_foreign_key "members", "groups"
 end
