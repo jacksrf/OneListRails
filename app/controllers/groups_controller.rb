@@ -10,7 +10,6 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by(id: params[:id])
     @members = Member.where(name: session[:username])
-    binding.pry
     @multiLists = MultiList.where(group_id: @group.id)
     @lists = List.where(user_id: session[:user_id])
     @list = List.find_by(id: @group.list_id)

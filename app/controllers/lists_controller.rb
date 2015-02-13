@@ -8,7 +8,6 @@ class ListsController < ApplicationController
       @members = Member.where(name: session[:username])
       @items = Item.where(user_id: session[:user_id])
       @multiLists = MultiList.where(user_id: session[:user_id])
-      binding.pry
     else
       redirect_to '/login'
     end

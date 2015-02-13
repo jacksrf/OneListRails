@@ -63,11 +63,10 @@
 
             <% if @group.multi_list == true %>
             <%= f.hidden_field :multi_list, :value => true %>
-            <% binding.pry %>
+        
 
             <% elsif @group.multi_list == false %>
             <%= f.hidden_field :multi_list, :value => false %>
-            <% binding.pry %>
             <% end %>
            </br >
            <%= f.submit "INVITE"%>

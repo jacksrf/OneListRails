@@ -85,7 +85,6 @@
             <ul class="nav nav-pills">
             <% @members.each do |member| %>
               <% group = Group.find_by(id: member.group_id) %>
-              <% binding.pry %>
                 <li><%= link_to group.name, group_path(group.id) %></li>
 
               <% end %>
