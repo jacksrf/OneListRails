@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     redirect_to '/admin'
   end
 
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to :back
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :password, :first_name, :last_name, :address, :address2, :city, :state, :zip, :email, :phone)
