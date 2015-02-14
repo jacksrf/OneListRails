@@ -1,0 +1,18 @@
+<% if session[:username] == "jacksrf" %>
+
+<% @lists.each do |list| %>
+    <div class="row">
+      <div class="col-md-1"><%= list.name %></div>
+    </div>
+    <% items = Item.where(list_id: list.id) %>
+    <% items.each do |item| %>
+      <div class="row">
+        <div class="col-md-7"><a href="<%= item.url %>"><%= item.name %></a></div>
+        <div class="col-md-2 col-md-offset-1">Price: <%= item.price %></div>
+      </div>
+      <% end %>
+  <% end %>
+  <% else %>
+  <h1>You dont have access to this!</h1>
+  <%= link_to "go back", user_lists_path(session[:user_id]) %>
+  <% end %>
