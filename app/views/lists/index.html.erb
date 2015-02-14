@@ -107,8 +107,9 @@
             <ul class="nav nav-pills">
             <% @members.each do |member| %>
               <% group = Group.find_by(id: member.group_id) %>
+              <% if group.creator_id != session[:user_id] %>
                 <li><%= link_to group.name, group_path(group.id) %></li>
-
+                <% end %>
               <% end %>
               <% if @multiLists %>
               <% @multiLists.each do |multiList| %>
