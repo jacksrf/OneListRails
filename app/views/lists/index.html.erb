@@ -113,7 +113,9 @@
               <% if @multiLists %>
               <% @multiLists.each do |multiList| %>
                 <% group = Group.find_by(id: multiList.group_id) %>
+                <% if group.creator_id != session[:user_id] %>
                   <li><%= link_to group.name, group_path(group.id) %></li>
+                  <%end%>
                   <%end%>
                   <%end%>
             </ul>
