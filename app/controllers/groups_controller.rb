@@ -15,7 +15,11 @@ class GroupsController < ApplicationController
     @list = List.find_by(id: @group.list_id)
     @groups = Group.where(creator_id: session[:user_id])
     @invites = Invite.where(group_id: params[:id])
+  if params[:sort] == "price"
+    @items = Item.where(list_id:@group.list_id).order('price ASC')
+  else
     @items = Item.where(list_id:@group.list_id)
+  end
   end
 
   def create

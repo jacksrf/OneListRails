@@ -61,6 +61,7 @@
 <!-- THE LIST FOR SINGLE LIST GROUPS-->
           <h4>The List: </h4>
           <% if @group.creator_id == session[:user_id]%>
+          <%= link_to "sort by price", group_path(@group.id, :sort => "price") %>
           <% @items.each do |item| %>
               <div class="row">
                 <div class="col-md-7"><a href="<%= item.url %>"><%= item.name %></a></div>

@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   # validates :zip, presence: true
   validates :email, presence: true
   # validates :phone, presence: true
+  validates_uniqueness_of :username
+  validates_uniqueness_of :email
 end
