@@ -31,7 +31,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.delete
     redirect_to '/admin'
-    binding.pry
   end
 
   private

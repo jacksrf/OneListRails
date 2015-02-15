@@ -13,10 +13,6 @@ class ItemsController < ApplicationController
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
     @item = Item.create(item_params)
-    @response = HTTParty.get(URI.encode(params[:url]))
-    @result = JSON.parse(@response.body)
-    # render json: @result
-   binding.pry
     redirect_to list_path(@list)
   end
 
