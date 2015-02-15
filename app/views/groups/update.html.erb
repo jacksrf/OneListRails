@@ -51,43 +51,21 @@
 <div id="main-container" class="container-fluid">
       <div class="row">
         <div id="main-content" class="col-md-9">
-
-      <% if params[:type] == "quantity" %>
-        <%= form_for [@list,@item]  do |f| %>
-          <%= f.hidden_field :name, :value => @item.name %>
-          <%= f.hidden_field :url, :value => @item.url %>
-          <%= f.hidden_field :price, :value => @item.price %>
-          <%= f.hidden_field :bought, :value => @item.bought %>
-          <%= f.hidden_field :list_id, :value => @item.list_id %>
-          <%= f.hidden_field :bought_id, :value => @item.bought_id %>
-          <%= f.hidden_field :type, :value => "quantity" %>
-          <%= f.hidden_field :quantity, :value => 0 %>
-          <%= f.label :quantity %>
-          <%= f.text_field :quantity_bought %>
-          <% binding.pry %>
-        <%= f.submit "confirm" %>
-        <% end %>
-        <% else %>
-        <%= form_for [@list,@item] do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name, :value => @item.name %>
-          </br >
-          <%= f.label :url %>
-           <%= f.text_field :url, :value => @item.url %>
-           </br >
-           <%= f.label :price %>
-           <%= f.text_field :price, :value => @item.price %>
-           </br >
-           <%= f.label :quantity %>
-           <%= f.text_field :quantity, :value => @item.quantity %>
-           </br >
-           <%= f.hidden_field :list_id, :value => @item.list_id %>
-           <%= f.hidden_field :bought, :value => "true" %>
-           <%= f.hidden_field :bought_id, :value => session[:user_id] %>
-           <%= f.hidden_field :type, :value => "edit" %>
+          <% item = Item.find_by(id: params[:item][:item_id])%>
+          <%= form_for [@list,item]  do |f| %>
+        <% binding.pry %>
+            <%= f.hidden_field :name, :value => item.name %>
+            <%= f.hidden_field :url, :value => item.url %>
+            <%= f.hidden_field :price, :value => item.price %>
+            <%= f.hidden_field :bought, :value => item.bought %>
+            <%= f.hidden_field :list_id, :value => item.list_id %>
+            <%= f.hidden_field :bought_id, :value => item.bought.id %>
+            <%= f.hidden_field :type, :value => "quantity" %>
+            <% newQuantity = item.quantity - params[:item][:quantity_bought] %>
+            <%= f.hidden_field :quantity, :value => newQuantity %>
+            <%= t.text_field :quantity_bought, :value => params[:item][:quantity_bought] %>
           <%= f.submit "confirm" %>
-          <% end %>
-          <% end %>
+<% end %>
 </div>
 <div id="sidebar" class="col-md-2">
   <div class="well well-large">

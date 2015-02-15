@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
   resources :invites
   resources :multi_lists
+  resources :items
 
   get '/login' => 'session#new'
   post '/session' => 'session#create'

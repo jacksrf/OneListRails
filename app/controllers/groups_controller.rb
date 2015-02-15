@@ -31,6 +31,17 @@ class GroupsController < ApplicationController
     redirect_to group_path(@group.id)
   end
 
+  def update
+  end
+
+  def edit
+    @list = List.find_by(user_id: session[:user_id])
+    @members = Member.where(group_id: params[:id])
+    @groups = Group.where(creator_id: session[:user_id])
+    binding.pry
+
+  end
+
   def destroy
     @group = Group.find_by(id: params[:id])
     @group.destroy
@@ -48,6 +59,10 @@ class GroupsController < ApplicationController
   private
     def group_params
       params.require(:group).permit(:name, :creator_id, :single_list, :multi_list, :list_id, :subtitle)
+    end
+
+    def edit_params
+      params.require(:item).permit(:quantity_bought)
     end
 
 end
