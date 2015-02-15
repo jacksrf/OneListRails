@@ -27,9 +27,9 @@ class UsersController < ApplicationController
     redirect_to '/admin'
   end
 
-  def delete
+  def destroy
     @user = User.find_by(id: params[:id])
-    @user.delete
+    @user.destroy
     redirect_to '/admin'
   end
 
