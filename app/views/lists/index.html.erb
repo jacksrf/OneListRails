@@ -51,7 +51,7 @@
 <div id="main-container" class="container-fluid">
       <div class="row">
         <div id="main-content" class="col-md-9 col-md-offset-1">
-          <% if @invites %>
+          <!-- <% if @invites %>
           <h4>You have invites: </h4>
           <ul>
           <% @invites.each do |invite| %>
@@ -71,7 +71,7 @@
             <% end %>
             <% end %>
           </ul>
-          <% end %>
+          <% end %> -->
           <h3>Master List: </h3>
           <% if @items.empty? %>
             <p>You have no items or lists. Click <button id="masterListBtn" class="btn btn-success"><%= link_to "HERE", new_list_path %></button> to make a list
@@ -117,8 +117,8 @@
                 <% if group.creator_id != session[:user_id] %>
                   <li><%= link_to group.name, group_path(group.id) %></li>
                   <%end%>
-                  <%end%>
-                  <%end%>
+                <%end%>
+              <%end%>
             </ul>
 
           </div>
