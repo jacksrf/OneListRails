@@ -29,8 +29,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
-    @user.destroy
+    @user.delete
     redirect_to '/admin'
+    binding.pry
   end
 
   private
