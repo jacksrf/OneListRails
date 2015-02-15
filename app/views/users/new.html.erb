@@ -24,7 +24,7 @@
     <div class="col-md-8 col-md-offset-2">
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="alert alert-danger" role="alert"><%= msg %></li>
         <% end %>
       </ul>
       <%= form_for @user do |f| %>

@@ -19,6 +19,7 @@
  * {
    font-family: 'Roboto', sans-serif;
    font-weight: 300;
+   list-style: none;
  }
 
 #login .inputs{
