@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
     @list = List.find_by(user_id: session[:user_id])
     @members = Member.where(group_id: params[:id])
     @groups = Group.where(creator_id: session[:user_id])
-    
+
 
   end
 
