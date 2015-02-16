@@ -15,9 +15,15 @@ Rails.application.routes.draw do
     resources :members
     resources :multi_lists
   end
+
+  resources :items do
+    resources :images
+  end
+  
   resources :invites
   resources :multi_lists
   resources :items
+  resources :images
 
   get '/login' => 'session#new'
   post '/session' => 'session#create'

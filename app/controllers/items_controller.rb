@@ -1,4 +1,21 @@
 class ItemsController < ApplicationController
+require 'nokogiri'
+require 'open-uri'
+  def index
+    @images = []
+    @item = Item.find_by(id: params[:format])
+    @lists = List.where(user_id: session[:user_id])
+    @groups = Group.where(creator_id: session[:user_id])
+    @user = User.find_by(id: session[:user_id])
+    @invites = Invite.where(email: @user.email, name: session[:username])
+    @members = Member.where(name: session[:username])
+    binding.pry
+    doc = Nokogiri::HTML(open(@item.url))
+    doc.css('img').each do |link|
+      image = link.attributes["src"].value
+      @images.push(image)
+    end
+  end
 
   def new
     @list = List.find_by(user_id: session[:user_id])
@@ -9,20 +26,30 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @images = []
     @list = List.find_by(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
     @item = Item.create(item_params)
-    redirect_to list_path(@list)
+    redirect_to items_path(@item)
   end
 
   def edit
+    binding.pry
     @list = List.find_by(id: params[:list_id])
     @item = Item.find_by(id: params[:id])
     @group = Group.find_by(list_id: params[:list_id])
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
+    if params[:type] == "image"
+      url = params[:url]
+      @item = Item.find_by(id: params[:id])
+      @item.image_url = url
+      @item.save
+      redirect_to list_path(@item.list_id)
+    end
+
   end
 
   def update
