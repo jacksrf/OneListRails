@@ -6,9 +6,10 @@
     </div>
     <% items = Item.where(list_id: list.id) %>
     <% items.each do |item| %>
-      <div class="row">
-        <div class="col-md-7"><a href="<%= item.url %>"><%= item.name %></a></div>
-        <div class="col-md-2 col-md-offset-1">Price: <%= item.price %></div>
+      <div id="itemIndex" class="col-md-2">
+        <div><img id="imgIndex" src="<%= item.image_url %>"></div>
+        <div><a href="<%= item.url %>"><%= item.name %></a></div>
+        <div>Price: <%= item.price %></div>
       </div>
       <% end %>
   <% end %>
