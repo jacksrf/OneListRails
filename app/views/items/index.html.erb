@@ -54,10 +54,15 @@
           <h4>Pick an Image for your item: </h4>
           <div class="col-md-10">
           <div class="row">
-            <% binding.pry %>
+            <% if @images.length == 0 %>
+              <div>No images found on search, click continue!</div>
+
+              <div><%= link_to "Continue", edit_item_path(params[:format], :type=> "image") %></div>
+            <% else %>
           <% @images.each do |image| %>
               <div><img id="imgSearch" src="<%= image %>"></div>
               <div><%= link_to "Use this Image", edit_item_path(params[:format], :url => image, :type=> "image") %></div>
+            <% end %>
             <% end %>
           </div>
         </div>
