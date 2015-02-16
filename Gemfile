@@ -38,6 +38,8 @@ gem 'pony'
 gem 'mail'
 gem 'httparty'
 gem 'rails_12factor'
+gem 'nokogiri'
+gem 'semantics3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
