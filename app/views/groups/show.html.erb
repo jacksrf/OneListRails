@@ -104,10 +104,14 @@
           <% if @group.creator_id == session[:user_id]%>
             <div id="addButton" class="btn btn-large btn-primary"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
           <% end %>
+
 <!-- LINK TO DELETE GROUP -->
           <% if @group.creator_id == session[:user_id]%>
             <div id="addButton" class="btn btn-danger"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
           <% end %>
+          </br>
+          </br>
+          </br>
 <!-- LINK TO LEAVE SINGLE LIST GROUP-->
           <% if @group.creator_id != session[:user_id] && @group.single_list %>
             <% memberId = Member.find_by(name: session[:username], group_id: @group.id) %>

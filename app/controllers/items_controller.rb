@@ -9,12 +9,13 @@ require 'open-uri'
     @user = User.find_by(id: session[:user_id])
     @invites = Invite.where(email: @user.email, name: session[:username])
     @members = Member.where(name: session[:username])
-    
+
     doc = Nokogiri::HTML(open(@item.url))
     doc.css('img').each do |link|
       image = link.attributes["src"].value
       @images.push(image)
     end
+
   end
 
   def new

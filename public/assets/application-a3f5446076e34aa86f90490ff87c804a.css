@@ -6986,13 +6986,22 @@ span#invites {
  margin-top: 15.1px;
 }
 
-#imgSearch {
+/*#imgSearch {
   width: 100px;
-  height: 100px;
-}
+}*/
 
 #addButton a {
   color: white;
+}
+
+img#imgIndex {
+width: 100px;
+}
+
+div#itemIndex {
+height: 200px;
+text-align: center;
+margin: 3%;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

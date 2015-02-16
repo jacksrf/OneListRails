@@ -55,7 +55,7 @@
 
           <% @items.each do |item| %>
               <div class="row">
-                <div><img id="imgSearch" class="col-md-1" src="<%= item.image_url %>"></div>
+                <div><img id="imgSearch" class="col-md-2" src="<%= item.image_url %>"></div>
                 <div class="col-md-3"><a href="<%= item.url %>"><%= item.name %></a></div>
                 <div class="col-md-2 col-md-offset-1">Price: <%= item.price %></div>
                 <div class="col-md-2">quantity: <%= item.quantity %></div>
@@ -64,7 +64,11 @@
             <% end %>
             <div id="addButton" class="btn btn-large btn-primary"><%= link_to "ADD ITEM", new_list_item_path(@list) %></div>
             <div id="addButton" class="btn btn-danger"><%= link_to "DELETE LIST", list_path(@list), :method => :delete %></div>
-        </div>
+            </br>
+            </br>
+            </br>  
+      </div>
+
         <div id="sidebar" class="col-md-2">
           <div class="well well-large">
             <h4>Lists: </h4>
