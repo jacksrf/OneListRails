@@ -12,10 +12,14 @@ require 'open-uri'
 
     doc = Nokogiri::HTML(open(@item.url))
     doc.css('img').each do |link|
-      image = link.attributes["src"].value
-      @images.push(image)
+      if link.attributes["src"]
+        image = link.attributes["src"].value
+        @images.push(image)
+      elsif link.attributes["data-src"]
+        image = link.attributes["data-src"].value
+        @images.push(image)
+      end
     end
-
   end
 
   def new
