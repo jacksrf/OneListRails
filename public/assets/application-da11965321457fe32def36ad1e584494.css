@@ -6985,6 +6985,11 @@ span#invites {
  height: 18px;
  margin-top: 15.1px;
 }
+
+#imgSearch {
+  width: 100px;
+  height: 100px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
