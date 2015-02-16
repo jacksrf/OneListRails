@@ -9,7 +9,7 @@
       <div id="itemIndex" class="col-md-2">
         <div><img id="imgIndex" src="<%= item.image_url %>"></div>
         <div><a href="<%= item.url %>"><%= item.name %></a></div>
-        <div>Price: <%= item.price %></div>
+        <div>Price: <%= number_to_currency(item.price.to_i) %></div>
       </div>
       <% end %>
   <% end %>
