@@ -6990,6 +6990,10 @@ span#invites {
   width: 100px;
   height: 100px;
 }
+
+#addButton a {
+  color: white;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

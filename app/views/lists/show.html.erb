@@ -62,7 +62,8 @@
                 <div class="col-md-1"><%= link_to "delete", [item.list, item], :confirm => "Are you sure you want to delete this comment?", :method => :delete %> <%= link_to "edit", edit_list_item_path(@list, item, :type=> "edit") %></div>
               </div>
             <% end %>
-            <div><%= link_to "DELETE LIST", list_path(@list), :method => :delete %></div>
+            <div id="addButton" class="btn btn-large btn-primary"><%= link_to "ADD ITEM", new_list_item_path(@list) %></div>
+            <div id="addButton" class="btn btn-danger"><%= link_to "DELETE LIST", list_path(@list), :method => :delete %></div>
         </div>
         <div id="sidebar" class="col-md-2">
           <div class="well well-large">

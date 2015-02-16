@@ -67,6 +67,9 @@
           </div>
         <% end %>
       <% end %>
+      <% if @multiList.user_id == session[:user_id]%>
+        <div><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
+      <% end %>
       <% if @multiList.user_id != session[:user_id]%>
       <% @items.each do |item| %>
           <div class="row">

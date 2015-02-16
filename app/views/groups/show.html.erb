@@ -15,9 +15,6 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "ADD A LIST", new_list_path %></li>
         <li><%= link_to "ADD A GROUP", new_group_path %></li>
-        <% if @group.creator_id == session[:user_id]%>
-          <li><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></li>
-        <% end %>
         <li><%= link_to "INVITES", invites_path %></li>
         <li><%= link_to "HOME", lists_path %></li>
       </ul>
@@ -104,9 +101,12 @@
               </div>
            <% end %>
           <% end %>
+          <% if @group.creator_id == session[:user_id]%>
+            <div id="addButton" class="btn btn-large btn-primary"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
+          <% end %>
 <!-- LINK TO DELETE GROUP -->
           <% if @group.creator_id == session[:user_id]%>
-            <%= link_to "DELETE GROUP", group_path, :method=> "delete" %>
+            <div id="addButton" class="btn btn-danger"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
           <% end %>
 <!-- LINK TO LEAVE SINGLE LIST GROUP-->
           <% if @group.creator_id != session[:user_id] && @group.single_list %>

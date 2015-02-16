@@ -16,9 +16,6 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "ADD A LIST", new_list_path %></li>
         <li><%= link_to "ADD A GROUP", new_group_path %></li>
-        <% if @group.creator_id == session[:user_id]%>
-          <li><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></li>
-        <% end %>
         <li><%= link_to "INVITES", invites_path %></li>
         <li><%= link_to "HOME", lists_path %></li>
         <!-- <li class="dropdown">
