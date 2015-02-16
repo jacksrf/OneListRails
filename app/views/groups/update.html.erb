@@ -53,7 +53,7 @@
         <div id="main-content" class="col-md-9">
           <% item = Item.find_by(id: params[:item][:item_id])%>
           <%= form_for [@list,item]  do |f| %>
-        <% binding.pry %>
+      
             <%= f.hidden_field :name, :value => item.name %>
             <%= f.hidden_field :url, :value => item.url %>
             <%= f.hidden_field :price, :value => item.price %>

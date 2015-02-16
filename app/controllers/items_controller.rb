@@ -9,7 +9,7 @@ require 'open-uri'
     @user = User.find_by(id: session[:user_id])
     @invites = Invite.where(email: @user.email, name: session[:username])
     @members = Member.where(name: session[:username])
-    binding.pry
+    
     doc = Nokogiri::HTML(open(@item.url))
     doc.css('img').each do |link|
       image = link.attributes["src"].value
@@ -35,7 +35,6 @@ require 'open-uri'
   end
 
   def edit
-    binding.pry
     @list = List.find_by(id: params[:list_id])
     @item = Item.find_by(id: params[:id])
     @group = Group.find_by(list_id: params[:list_id])
@@ -75,7 +74,7 @@ require 'open-uri'
           newItem.quantity = newQuantity.to_i
           newItem.save
           redirect_to group_path(@group)
-          binding.pry
+
         else
           newQuantity_bought = @item.quantity_bought.to_i + params[:item][:quantity_bought].to_i
           newQuantity = @item.quantity.to_i - params[:item][:quantity_bought].to_i
@@ -84,7 +83,7 @@ require 'open-uri'
           newItem.quantity = newQuantity
           newItem.save
           redirect_to group_path(@group)
-          binding.pry
+
       end
     else
       @list = List.find_by(id: params[:id])
