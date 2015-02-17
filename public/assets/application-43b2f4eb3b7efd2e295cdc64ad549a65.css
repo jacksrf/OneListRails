@@ -7062,7 +7062,7 @@ div#delete:hover {
 background-color: rgba(229,20,0,.9);
 }
 
-div#inviteButton:hover {
+#inviteButton:hover {
   background-color: rgba(0,171,169,.9);
 }
 
@@ -7076,6 +7076,20 @@ div#sortPrice:hover {
 
 div#sortQuantity:hover {
   background-color: rgba(0,80,239,.9);
+}
+
+a#masterButton {
+text-decoration: none;
+color: black;
+border: 1px solid black;
+width: 200px;
+text-align: center;
+width: 200px;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 5px;
+padding-bottom: 5px;
+margin-right: 5px;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

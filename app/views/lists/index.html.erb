@@ -90,7 +90,7 @@
           <% end %>
           <h3>Master List: </h3>
           <% if @items.empty? %>
-            <p>You have no items or lists. Click <button id="masterListBtn" class="btn btn-success"><%= link_to "HERE", new_list_path %></button> to make a list
+            <div>You have no items or lists. Click <%= link_to "HERE", new_list_path, :id => "masterButton" %>to make a list</div>
           <% else %>
           <% @items.each do |item| %>
             <% list = List.find_by(id: item.list_id) %>
