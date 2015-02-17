@@ -64,11 +64,6 @@ span#invites {
   width: 100px;
 }*/
 
-#addButton a {
-  color: white;
-  text-decoration: none;
-}
-
 img#imgIndex {
 width: 100px;
 }
@@ -107,4 +102,46 @@ margin: 10px;
 ul#navHeader li a {
 line-height: 4;
 color: black;
+}
+
+.groupButton {
+border: 1px solid Black;
+padding: 5px;
+width: 167px;
+margin-right: 5px;
+text-align: center;
+}
+
+.groupNav {
+display: inline-flex;
+margin-top: 20px
+}
+
+.groupButton.width a {
+  color: black;
+  text-decoration: none;
+}
+
+#addButton a {
+  color: black;
+}
+
+div#delete:hover {
+background-color: rgba(229,20,0,.9);
+}
+
+div#inviteButton:hover {
+  background-color: rgba(0,171,169,.9);
+}
+
+div#addItemButton:hover {
+  background-color: rgba(109,135,100,.9);
+}
+
+div#sortPrice:hover {
+  background-color: rgba(0,138,0,.9);
+}
+
+div#sortQuantity:hover {
+  background-color: rgba(0,80,239,.9);
 }
