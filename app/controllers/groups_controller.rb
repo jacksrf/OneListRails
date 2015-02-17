@@ -17,6 +17,8 @@ class GroupsController < ApplicationController
     @invites = Invite.where(group_id: @group.id)
   if params[:sort] == "price"
     @items = Item.where(list_id:@group.list_id).order('price ASC')
+  elsif params[:sort] == "quantity"
+    @items = Item.where(list_id:@group.list_id).order('quantity ASC')
   else
     @items = Item.where(list_id:@group.list_id)
   end

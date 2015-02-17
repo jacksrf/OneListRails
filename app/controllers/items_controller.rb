@@ -11,6 +11,9 @@ require 'open-uri'
     @members = Member.where(name: session[:username])
 
     doc = Nokogiri::HTML(open(@item.url))
+    # doc.css('h1').each do |link|
+    #   item = link.children
+    # end
     doc.css('img').each do |link|
       if link.attributes["src"]
         image = link.attributes["src"].value
@@ -118,7 +121,7 @@ require 'open-uri'
 
   private
     def item_params
-      params.require(:item).permit(:name, :url, :price, :list_id, :bought, :bought_id, :user_id, :quantity)
+      params.require(:item).permit(:name, :url, :list_id, :bought, :bought_id, :user_id, :quantity, :price)
     end
 
 end

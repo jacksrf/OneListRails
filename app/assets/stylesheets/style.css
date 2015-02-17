@@ -66,14 +66,44 @@ span#invites {
 
 #addButton a {
   color: white;
+  text-decoration: none;
 }
 
 img#imgIndex {
 width: 100px;
 }
 
-div#itemIndex {
-height: 200px;
+div#items {
+height: 250px;
 text-align: center;
-margin: 3%;
+}
+
+div#inline {
+  display: inline-flex;
+}
+
+div#name {
+font-size: 15px;
+padding-right: 15px;
+line-height: 2;
+}
+
+div#imageIndex img {
+width: 100px;
+}
+
+hr#headerDivider {
+margin-top: 0px;
+margin-bottom: 20px;
+border: 0;
+border-top: 1px solid #eee;
+}
+
+div#logo {
+font-size: 40px;
+margin: 10px;
+}
+
+ul#navHeader li a {
+line-height: 4;
 }
