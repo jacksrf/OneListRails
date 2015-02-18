@@ -6491,8 +6491,8 @@ button.close {
   }
 }
 * {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
   list-style: none;
 }
 
@@ -6656,6 +6656,19 @@ padding-right: 20px;
 padding-top: 5px;
 padding-bottom: 5px;
 margin-right: 5px;
+}
+
+.memberDrop {
+text-align: center;
+}
+
+div#itemIndex {
+height: 250px;
+margin: 1%;
+}
+
+div#members:hover {
+background-color: rgba(250,104,0,.7);
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
