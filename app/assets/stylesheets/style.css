@@ -179,3 +179,11 @@ margin-top: 25px;
 border: none;
 background: white;
 }
+
+.signUp {
+text-align: center;
+}
+
+label {
+width: 100px;
+}

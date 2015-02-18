@@ -57,7 +57,9 @@
             <ul class="dropdown-menu">
                 <li><a href="#">Another action</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Settings</a></li>
+                <% if session[:username] == "jacksrf" %>
+                <li><%= link_to "ADMIN", users_path %></li>
+                <% end %>
             </ul>
         </li>
     </ul>

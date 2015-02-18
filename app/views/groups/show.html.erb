@@ -161,7 +161,7 @@
 
 <!-- LINK TO LEAVE SINGLE LIST GROUP-->
           <% if @group.creator_id != session[:user_id] && @group.single_list %>
-            <% memberId = Member.find_by(name: session[:username], group_id: @group.id) %>
+            <% memberId = Member.find_by(user_id: session[:user_id], group_id: @group.id) %>
             <%= link_to "LEAVE GROUP", group_member_path(@group, memberId), :method=> "delete" %>
             <% end %>
             <!-- LINK TO LEAVE A MULTI LIST GROUP -->

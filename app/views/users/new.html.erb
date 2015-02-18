@@ -8,7 +8,10 @@
 
 <div id="main-container" class="container-fluid">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="signUp col-md-8 col-md-offset-2">
+      <h1>WELCOME TO OneList.</h1>
+
+      <h4>Sign up below to join!</h4>
       <ul>
         <% @user.errors.full_messages.each do |msg| %>
         <li class="alert alert-danger" role="alert"><%= msg %></li>

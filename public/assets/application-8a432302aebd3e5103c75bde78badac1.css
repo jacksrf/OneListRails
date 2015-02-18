@@ -9576,6 +9576,14 @@ margin-top: 25px;
 border: none;
 background: white;
 }
+
+.signUp {
+text-align: center;
+}
+
+label {
+width: 100px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
