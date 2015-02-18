@@ -4,7 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>You have been invited! <%= @invite.name %>!</h1>
-    <p>Join by going to www.onelist.io/signup! OneList is your all in one registry list!</p>
+    <h1>Hey <%= @invite.name %>!You have been invited by <%= @user.first_name %> <%= @user.last_name %>! </h1>
+    <p>They would like you to use this as their registry!
+      Join by going to www.onelist.io/signup! OneList is your all in one registry list!</p>
   </body>
 </html>

@@ -20,7 +20,7 @@ def create
   @invite = Invite.create(invite_params)
   @group = Group.find_by(id: invite_params[:group_id])
   @user = User.find_by(id: @group.creator_id)
-  UserNotifier.send_invite_email(@invite).deliver
+  UserNotifier.send_invite_email(@invite, @user).deliver
   redirect_to group_path(params[:group_id])
 end
 
