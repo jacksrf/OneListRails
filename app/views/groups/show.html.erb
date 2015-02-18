@@ -1,9 +1,8 @@
 <div class="bs-example">
     <ul id="navHeader" class="nav nav-pills">
         <li>
-          <div id="logo">OneList.</div>
+          <div id="logo"><a href="http://www.onelist.io">OneList.</a></div>
         </li>
-        <li><%= link_to "HOME", lists_path %></li>
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">ACTIONS <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -55,8 +54,7 @@
         <li class="dropdown pull-right">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="#">Another action</a></li>
-                <li class="divider"></li>
+              
                 <li><a href="#">Settings</a></li>
             </ul>
         </li>
@@ -105,6 +103,10 @@
           <% if @group.creator_id == session[:user_id]%>
             <div id="delete" class="groupButton width"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
           <% end %>
+          <% if @group.creator_id != session[:user_id] && @group.single_list %>
+            <% memberId = Member.where(user_id: session[:user_id], group_id: @group.id) %>
+            <div id="delete" class="groupButton width"><%= link_to "LEAVE GROUP", group_member_path(@group, memberId), :method=> "delete" %></div>
+            <% end %>
         </div>
       </div>
     </br>
@@ -136,8 +138,9 @@
                   <% if item.bought == false %>
                   <div><%= link_to "buy", list_item_path(@list.id, item.id, :item => {:type=> ""}), :method => :put %></div>
                   <% elsif item.bought == true %>
-                  <% buyer = User.find_by(id: item.bought_id) %>
-                  <div>Bought by: <%= buyer.first_name %> <%= buyer.last_name %>
+                  <% @buyer = User.find_by(id: item.bought_id) %>
+                  <% binding.pry %>
+                  <div>Bought by: <%= @buyer.username %> <%= @buyer.last_name %></div>
                     <% if session[:user_id] == item.bought_id %>
                     <%= link_to "cancel", list_item_path(@list.id, item,:item => {:type=> ""}), :method => :put %>
                     <% end %>
@@ -160,16 +163,16 @@
 
 
 <!-- LINK TO LEAVE SINGLE LIST GROUP-->
-          <% if @group.creator_id != session[:user_id] && @group.single_list %>
+          <!-- <% if @group.creator_id != session[:user_id] && @group.single_list %>
             <% memberId = Member.find_by(user_id: session[:user_id], group_id: @group.id) %>
             <%= link_to "LEAVE GROUP", group_member_path(@group, memberId), :method=> "delete" %>
-            <% end %>
+            <% end %> -->
             <!-- LINK TO LEAVE A MULTI LIST GROUP -->
-          <% if @group.creator_id != session[:user_id] && @group.multi_list %>
+          <!-- <% if @group.creator_id != session[:user_id] && @group.multi_list %>
             <% multiListId = MultiList.find_by(user_id: session[:user_id]) %>
             <%= link_to "LEAVE GROUP", group_member_path(@group, multiListId), :method=> "delete" %>
             <% end %>
-          </div>
+          </div> -->
 
 <!-- SIDE BAR FEATURES -->
         <!-- <div id="sidebar" class="col-md-2">
@@ -209,6 +212,11 @@
       <% if @group.creator_id == session[:user_id]%>
         <div id="delete" class="groupButton width"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
       <% end %>
+      <% if @group.creator_id != session[:user_id] && @group.multi_list %>
+        <% multiListId = MultiList.find_by(user_id: session[:user_id]) %>
+        <div id="delete" class="groupButton width"><%= link_to "LEAVE GROUP", group_member_path(@group, multiListId), :method=> "delete" %></div>
+        <% end %>
+      </div>
     </div>
   </div>
 <div class="row">

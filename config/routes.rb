@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :images
   end
 
+  resources :members
   resources :invites
   resources :multi_lists
   resources :items
