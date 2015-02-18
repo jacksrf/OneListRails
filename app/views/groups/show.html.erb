@@ -54,7 +54,7 @@
         <li class="dropdown pull-right">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
             <ul class="dropdown-menu">
-              
+
                 <li><a href="#">Settings</a></li>
             </ul>
         </li>
@@ -139,7 +139,7 @@
                   <div><%= link_to "buy", list_item_path(@list.id, item.id, :item => {:type=> ""}), :method => :put %></div>
                   <% elsif item.bought == true %>
                   <% @buyer = User.find_by(id: item.bought_id) %>
-                  <% binding.pry %>
+                  
                   <div>Bought by: <%= @buyer.username %> <%= @buyer.last_name %></div>
                     <% if session[:user_id] == item.bought_id %>
                     <%= link_to "cancel", list_item_path(@list.id, item,:item => {:type=> ""}), :method => :put %>
