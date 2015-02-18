@@ -65,54 +65,54 @@
 
 
 <div id="main-container" class="container-fluid">
-  <div class="row">
-    <div id="main-content" class="col-md-10">
-      <h2><%= @group.name %>:</h2>
-      <h4><%= @group.subtitle %></h4>
-      <h4>Your List: </h4>
+  <div id="main-content" class="col-md-12">
+    <div class="row">
+    <div class="col-md-3">
+      <h2><%= @group.name.upcase %>:</h2>
+      <h4><%= @group.subtitle.upcase %></h4>
+    </div>
 
-      <% if @multiList.user_id == session[:user_id]%>
+      <div class="groupNav col-md-9">
+      <% if @group.creator_id == session[:user_id]%>
+        <div id="inviteButton" class="groupButton width"><%= link_to "INVITE", new_group_invite_path(@group.id) %></div>
+      <% end %>
+        <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
+        <div id="sortPrice" class="groupButton width"><%= link_to "SORT BY PRICE", group_path(@group.id, :sort => "price") %></div>
+      <div id="members" class="groupButton width dropdown">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUP MEMBERS</a>
+          <ul class="dropdown-menu">
+
+            <% @multiLists.each do |multiList| %>
+              <% if multiList.user_id != session[:user_id] %>
+                <% user = User.find_by(id: multiList.user_id) %>
+                <% group = Group.find_by(id: multiList.group_id) %>
+                <% name = user.first_name + " " + user.last_name %>
+                  <li class="memberDrop col-md-offset-1"><%= link_to name.upcase, group_multi_list_path(group.id,multiList.id) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+    <% if @group.creator_id == session[:user_id]%>
+      <div id="delete" class="groupButton width"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
+    <% end %>
+    </div>
+  </div>
+<div class="row">
+      <h4><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s List: </h4>
+
       <% @items.each do |item| %>
-          <div class="row">
-            <div class="col-md-4"><a href="<%= item.url %>"><%= item.name %></a></div>
-            <div class="col-md-2 col-md-offset-1">Price: <%= number_to_currency(item.price.to_i) %></div>
-            <div class="col-md-2">quantity: <%= item.quantity %></div>
-            <div class="col-md-1"><%= link_to "delete", [item.list, item], :confirm => "Are you sure you want to delete this comment?", :method => :delete %></div>
-            <div class="col-md-1"><%= link_to "edit", edit_list_item_path(@list, item, :type=> "edit") %></div>
+          <div id="itemIndex" class="col-md-2">
+            <div><img id="imgIndex" src="<%= item.image_url %>"></div>
+            </br>
+            <div><a href="<%= item.url %>"><%= item.name %></a></div>
+            <div>Price: <%= number_to_currency(item.price.to_i) %></div>
+            <div><%= link_to "delete", [item.list, item], :confirm => "Are you sure you want to delete this comment?", :method => :delete %></div>
           </div>
         <% end %>
-      <% end %>
-      <% if @multiList.user_id == session[:user_id]%>
-        <divid="addButton" class="btn btn-large btn-primary"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
-      <% end %>
-      <% if @multiList.user_id != session[:user_id]%>
-      <% @items.each do |item| %>
-          <div class="row">
-            <div class="col-md-6"><a href="<%= item.url %>">- <%= item.name %></a></div>
-            <div class="col-md-2">Price: <%= number_to_currency(item.price.to_i) %></div>
-            <div class="col-md-2">Quantity: <%= item.quantity %></div>
-            <% if item.quantity == 1 %>
-              <% if item.bought == false %>
-              <div class="col-md-2"><%= link_to "buy", list_item_path(@list.id, item.id), :method => :put %></div>
-              <% elsif item.bought == true %>
-              <% buyer = User.find_by(id: item.bought_id) %>
-              <div class="col-md-2" style="display: inline">Bought by: <%= buyer.first_name %> <%= buyer.last_name %>
-                <% if session[:user_id] == item.bought_id %>
-                <%= link_to "cancel", list_item_path(@list.id, item), :method => :put %>
-                <% end %>
-              </div>
-              <% end %>
-            <% else %>
-              <div class="col-md-2"><%= link_to "buy", list_item_path(@list.id, item.id), :method => :put %></div>
-            <% end %>
-          </div>
-       <% end %>
-      <% end %>
 
-<!-- LINK TO DELETE GROUP -->
-      <% if @group.creator_id == session[:user_id]%>
-        <div id="addButton" class="btn btn-danger"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
-      <% end %>
+
+
+
 
 <!-- LINK TO LEAVE A MULTI LIST GROUP -->
       <% if @group.creator_id != session[:user_id] && @group.multi_list %>
@@ -121,9 +121,9 @@
       <% end %>
 
     </div>
-    <div id="sidebar" class="col-md-2">
+    <!-- <div id="sidebar" class="col-md-2">
       <div class="well well-large">
-        <!-- invite link -->
+        invite link
         <% if @group.creator_id == session[:user_id]%>
           <div><%= link_to "Invite", new_group_invite_path(@group.id) %></div>
         <% end %>
@@ -140,7 +140,12 @@
             </div>
           <% end %>
         <% end %>
-      </div>
-    </div>
+        </div>
+        LINK TO DELETE GROUP
+              <% if @group.creator_id == session[:user_id]%>
+                <div id="addButton" class="btn btn-danger"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
+              <% end %>
+
+    </div> -->
   </div>
 </div>

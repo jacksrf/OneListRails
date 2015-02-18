@@ -15,6 +15,10 @@ def show
   @list = List.find_by(id: @multiList.list_id)
   @items = Item.where(list_id: @list.id)
   @multiLists = MultiList.where(group_id: @group.id)
+  @user = User.find_by(id: @multiList.user_id)
+  @lists = List.where(user_id: session[:user_id])
+  @groups = Group.where(creator_id: session[:user_id])
+  @members = Member.where(user_id: session[:user_id])
 end
 
 def create

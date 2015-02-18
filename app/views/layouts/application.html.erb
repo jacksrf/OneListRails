@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>OneList.</title>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,6 +10,11 @@
 <body>
 
 <%= yield %>
+<script>
+  $(document).ready(function() {
+    $('.dropdown').dropit();
+});
 
+</script>
 </body>
 </html>

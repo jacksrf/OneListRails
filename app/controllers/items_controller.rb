@@ -11,9 +11,6 @@ require 'open-uri'
     @members = Member.where(name: session[:username])
 
     doc = Nokogiri::HTML(open(@item.url))
-    # doc.css('h1').each do |link|
-    #   item = link.children
-    # end
     doc.css('img').each do |link|
       if link.attributes["src"]
         image = link.attributes["src"].value
