@@ -135,7 +135,7 @@ background-color: rgba(229,20,0,.9);
 }
 
 div#addItemButton:hover {
-  background-color: rgba(109,135,100,.9);
+  background-color: rgba(109,135,100,.6);
 }
 
 div#sortPrice:hover {
@@ -167,8 +167,15 @@ text-align: center;
 div#itemIndex {
 height: 250px;
 margin: 1%;
+text-align: center;
 }
 
 div#members:hover {
 background-color: rgba(250,104,0,.7);
+}
+
+li form button {
+margin-top: 25px;
+border: none;
+background: white;
 }

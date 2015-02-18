@@ -19,12 +19,13 @@ Rails.application.routes.draw do
   resources :items do
     resources :images
   end
-  
+
   resources :invites
   resources :multi_lists
   resources :items
   resources :images
 
+  get '/signup' => 'users#new'
   get '/login' => 'session#new'
   post '/session' => 'session#create'
   delete '/session' => 'session#destroy'
