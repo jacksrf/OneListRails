@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Raleway-Light';
+  src:url('Raleway-Light.eot');
+  src:url('Raleway-Light.eot?#iefix') format('embedded-opentype'),
+    url('Raleway-Light.svg#icomoon') format('svg'),
+    url('Raleway-Light.woff') format('woff'),
+    url('Raleway-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   font-family: 'Raleway-Light';
   /*font-weight: 400;*/
