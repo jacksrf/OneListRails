@@ -15,4 +15,12 @@ class UserNotifier < ApplicationMailer
     :subject => 'Youve been invited to a group! Go to onelist.io/signup to join!',
     :other => @user )
   end
+
+  def send_reset_email(user,password)
+    @user = user
+    mail( :to => @user.email,
+    :subject => 'Reset your OneList. password!',
+    :other => @random_password)
+  end
+
 end

@@ -1,0 +1,28 @@
+<div class="bs-example">
+    <ul id="navHeader" class="nav nav-pills">
+        <li>
+          <div id="logo"><a href="http://www.onelist.io">OneList.</a></div>
+        </li>
+    </ul>
+    <hr id="headerDivider">
+
+<div id="main-container" class="container-fluid">
+      <div class="row">
+
+        <div id="main-content" class="col-md-10">
+        </br>
+        <div>Enter the email you registered a way to reset your password</div>
+
+
+          <%= form_for @login do |f| %>
+           <%= f.label :email %>
+           <%= f.text_field :email %>
+           </br >
+           <%= f.submit "SUBMIT"%>
+          <% end %>
+          <ul>
+            <% @login.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
