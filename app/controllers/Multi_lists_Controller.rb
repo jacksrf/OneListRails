@@ -19,6 +19,7 @@ def show
   @lists = List.where(user_id: session[:user_id])
   @groups = Group.where(creator_id: session[:user_id])
   @members = Member.where(user_id: session[:user_id])
+  @invites = Invite.where(email: @user.email)
 end
 
 def create

@@ -176,25 +176,6 @@
            <% end %>
           <% end %>
 
-
-<!-- LINK TO LEAVE SINGLE LIST GROUP-->
-          <!-- <% if @group.creator_id != session[:user_id] && @group.single_list %>
-            <% memberId = Member.find_by(user_id: session[:user_id], group_id: @group.id) %>
-            <%= link_to "LEAVE GROUP", group_member_path(@group, memberId), :method=> "delete" %>
-            <% end %> -->
-            <!-- LINK TO LEAVE A MULTI LIST GROUP -->
-          <!-- <% if @group.creator_id != session[:user_id] && @group.multi_list %>
-            <% multiListId = MultiList.find_by(user_id: session[:user_id]) %>
-            <%= link_to "LEAVE GROUP", group_member_path(@group, multiListId), :method=> "delete" %>
-            <% end %>
-          </div> -->
-
-<!-- SIDE BAR FEATURES -->
-        <!-- <div id="sidebar" class="col-md-2">
-          <div class="well well-large">
-
-        </div>
-        </div> -->
 <!-- SHOWS THE CURRENT GROUP MEMBERS LIST -->
 <% elsif @group.multi_list %>
 <div id="main-container" class="container-fluid">

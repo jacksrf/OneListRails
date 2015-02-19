@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(user_id: session[:user_id])
+    @invites = Invite.where(email: @user.email)
   end
 
   def create
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
     @members = Member.where(name: params[:username])
     @groups = Group.where(creator_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
+    @invites = Invite.where(email: @user.email)
   end
 
   def update
