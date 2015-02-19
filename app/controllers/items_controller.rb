@@ -48,6 +48,8 @@ require 'open-uri'
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
+    @user = User.find_by(id: session[:user_id])
+    @invites = Invite.where(email: @user.email)
     if params[:type] == "image"
       url = params[:url]
       @item = Item.find_by(id: params[:id])

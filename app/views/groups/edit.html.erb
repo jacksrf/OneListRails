@@ -76,20 +76,18 @@
     </ul>
     <hr id="headerDivider">
 
+    <div id="main-container" class="container-fluid">
+          <div class="row">
 
+            <div id="main-content" class="col-md-10">
+              <%= form_for [@group] do |f| %>
+               <%= f.hidden_field :user_id, :value => session[:user_id] %>
+               <%= f.hidden_field :group_id, :value => params[:id] %>
+               <%= f.label :list_id %>
+               <%= f.select :list_id, options_for_seasons, :prompt => "Please select" %>
+               <%= f.submit "confirm" %>
+              <% end %>
+              </div>
 
-<div id="main-container" class="container-fluid">
-      <div class="row">
-
-        <div id="main-content" class="col-md-10">
-          <%= form_for [@group,@multiList] do |f| %>
-           <%= f.hidden_field :user_id, :value => session[:user_id] %>
-           <%= f.hidden_field :group_id, :value => params[:group_id] %>
-           <%= f.label :list_id %>
-           <%= f.select :list_id, options_for_seasons, :prompt => "Please select" %>
-           <%= f.submit "confirm" %>
-          <% end %>
-          </div>
-
-        </div>
-        </div>
+            </div>
+            </div>

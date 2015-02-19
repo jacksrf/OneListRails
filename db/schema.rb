@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219022418) do
+ActiveRecord::Schema.define(version: 20150219184102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,9 @@ ActiveRecord::Schema.define(version: 20150219022418) do
   end
 
   add_foreign_key "items", "lists"
+  add_foreign_key "items", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "members", "groups"
+  add_foreign_key "members", "groups"
+  add_foreign_key "multi_lists", "groups"
 end
