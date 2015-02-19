@@ -19,6 +19,7 @@ class SessionController < ApplicationController
 
   def destroy
     reset_session
+    @message = false
     redirect_to '/login'
   end
 end
