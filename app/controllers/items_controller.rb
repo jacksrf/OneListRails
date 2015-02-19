@@ -23,7 +23,7 @@ require 'open-uri'
   end
 
   def new
-    @list = List.find_by(user_id: session[:user_id])
+    @list = List.find_by(id: params[:list_id])
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])

@@ -215,4 +215,15 @@ text-align: center;
 padding-top: 5px;
 padding-bottom: 5px;
 margin-top: 50px;
+margin-left: 40px;
+}
+
+h4.groupListNow {
+width: 200px;
+border: 1px solid;
+text-align: center;
+padding-top: 5px;
+padding-bottom: 5px;
+margin-top: 50px;
+margin-left: 40px;
 }

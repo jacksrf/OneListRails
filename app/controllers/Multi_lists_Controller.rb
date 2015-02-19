@@ -7,11 +7,13 @@ def new
   @MultiLists = MultiList.where(user_id: params[:user_id])
   @members = Member.where(name: params[:username])
   @groups = Group.where(creator_id: session[:user_id])
+  @user = User.find_by(id: session[:user_id])
+  @invites = Invite.where(email: @user.email)
 end
 
 def show
   @multiList = MultiList.find_by(id: params[:id])
-  @group = Group.find_by(id: @multiList.group_id)
+  @group = Group.find_by(id: params[:group_id])
   @list = List.find_by(id: @multiList.list_id)
   @items = Item.where(list_id: @list.id)
   @multiLists = MultiList.where(group_id: @group.id)
