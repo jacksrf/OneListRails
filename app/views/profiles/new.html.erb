@@ -15,14 +15,21 @@
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">LISTS <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                <% if @lists.empty? %>
+                  <li>No lists Yet</li>
+                <% else %>
                 <% @lists.each do |list| %>
                     <li><%= link_to list.name, user_list_path(list.user_id, list.id)%></li>
+                  <% end %>
                   <% end %>
               </ul>
 
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUPS <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                <% if @groups.empty? && @members.empty? && @multiLists.empty? %>
+                  <li>No Groups Yet</li>
+                <% else %>
                 <% @groups.each do |group| %>
                     <li><%= link_to group.name, group_path(group.id) %></li>
                   <% end %>
@@ -44,22 +51,31 @@
                   <%end%>
                 <%end%>
               <%end%>
+              <%end%>
               </ul>
-          <li><%= link_to "INVITES", invites_path %></li>
+              <% if @invites.length == 0 %>
+                <li><%= link_to "INVITES", invites_path %></li>
+              <% else %>
+                <% inviteTitle = "INVITES" + " ( " + @invites.length.to_s + " )"%>
+                <li><%= link_to inviteTitle, invites_path %></li>
+                <% end %>
           <li class="pull-right"><form method="POST" action="/session">
             <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
             <input name="_method" value="DELETE" type="hidden">
             <button>LOGOUT</button>
           </form></li>
         <li class="dropdown pull-right">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">SETTINGS<b class="caret"></b></a>
             <ul class="dropdown-menu">
-
-                <li><a href="#">Settings</a></li>
+                <li><%= link_to "PROFILE", user_path(session[:user_id]) %></li>
+                <% if session[:username] == "jacksrf" %>
+                <li><%= link_to "ADMIN", users_path %></li>
+                <% end %>
             </ul>
         </li>
     </ul>
     <hr id="headerDivider">
+
 
 
 <div id="main-container" class="container-fluid">

@@ -15,14 +15,21 @@
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">LISTS <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                <% if @lists.empty? %>
+                  <li>No lists Yet</li>
+                <% else %>
                 <% @lists.each do |list| %>
                     <li><%= link_to list.name, user_list_path(list.user_id, list.id)%></li>
+                  <% end %>
                   <% end %>
               </ul>
 
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUPS <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                <% if @groups.empty? && @members.empty? && @multiLists.empty? %>
+                  <li>No Groups Yet</li>
+                <% else %>
                 <% @groups.each do |group| %>
                     <li><%= link_to group.name, group_path(group.id) %></li>
                   <% end %>
@@ -44,8 +51,14 @@
                   <%end%>
                 <%end%>
               <%end%>
+              <%end%>
               </ul>
-          <li><%= link_to "INVITES", invites_path %></li>
+              <% if @invites.length == 0 %>
+                <li><%= link_to "INVITES", invites_path %></li>
+              <% else %>
+                <% inviteTitle = "INVITES" + " ( " + @invites.length.to_s + " )"%>
+                <li><%= link_to inviteTitle, invites_path %></li>
+                <% end %>
           <li class="pull-right"><form method="POST" action="/session">
             <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
             <input name="_method" value="DELETE" type="hidden">
@@ -89,8 +102,10 @@
           </ul>
           <% end %>
           <h3>Master List: </h3>
-          <% if @items.empty? %>
+          <% if @lists.empty? %>
             <div>You have no items or lists. Click <%= link_to "HERE", new_list_path, :id => "masterButton" %>to make a list</div>
+          <% elsif @items.empty? %>
+            <div>You have a list now but you need to add items! Click <%= link_to "HERE", list_path(session[:user_id]), :id => "masterButton" %>to add an item</div>
           <% else %>
           <% @items.each do |item| %>
             <% list = List.find_by(id: item.list_id) %>
