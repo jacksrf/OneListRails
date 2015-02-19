@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @lists = List.where(user_id: params[:id])
+    @items = Item.where(user_id: @user.id)
+    @multiLists = MultiList.where(user_id: @user.id)
+    @lists = List.where(user_id: session[:user_id])
+    @groups = Group.where(creator_id: session[:user_id])
+    @members = Member.where(user_id: session[:user_id])
   end
 
   def create
@@ -19,7 +23,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
+    @lists = List.where(user_id: session[:user_id])
+    @members = Member.where(name: params[:username])
+    @groups = Group.where(creator_id: session[:user_id])
+    @user = User.find_by(id: session[:user_id])
   end
 
   def update

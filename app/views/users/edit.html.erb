@@ -1,4 +1,72 @@
+<div class="bs-example">
+    <ul id="navHeader" class="nav nav-pills">
+        <li>
+          <div id="logo"><a href="http://www.onelist.io">OneList.</a></div>
+        </li>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">ACTIONS <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><%= link_to "ADD A LIST", new_list_path %></li>
+                <li><%= link_to "ADD A GROUP", new_group_path %></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">LISTS <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <% @lists.each do |list| %>
+                    <li><%= link_to list.name, user_list_path(list.user_id, list.id)%></li>
+                  <% end %>
+              </ul>
 
+          <li class="dropdown">
+              <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUPS <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <% @groups.each do |group| %>
+                    <li><%= link_to group.name, group_path(group.id) %></li>
+                  <% end %>
+                <% @members.each do |member| %>
+                  <% group = Group.find_by(id: member.group_id) %>
+                  <% if group != nil %>
+                  <% if group.creator_id != session[:user_id] %>
+                    <li><%= link_to group.name, group_path(group.id) %></li>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% if @multiLists %>
+                <% @multiLists.each do |multiList| %>
+                  <% group = Group.find_by(id: multiList.group_id) %>
+                  <% if group != nil %>
+                    <% if group.creator_id != session[:user_id] %>
+                      <li><%= link_to group.name, group_path(group.id) %></li>
+                    <%end%>
+                  <%end%>
+                <%end%>
+              <%end%>
+              </ul>
+          <li><%= link_to "INVITES", invites_path %></li>
+          <li class="pull-right"><form method="POST" action="/session">
+            <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+            <input name="_method" value="DELETE" type="hidden">
+            <button>LOGOUT</button>
+          </form></li>
+        <li class="dropdown pull-right">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">SETTINGS<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><%= link_to "PROFILE", user_path(session[:user_id]) %></li>
+                <% if session[:username] == "jacksrf" %>
+                <li><%= link_to "ADMIN", users_path %></li>
+                <% end %>
+            </ul>
+        </li>
+    </ul>
+    <hr id="headerDivider">
+
+    <div id="main-container" class="container-fluid">
+          <div class="row">
+            <div id="main-content" class="col-md-11 col-md-offset-1">
+<% if session[:user_id] == params[:id].to_i || session[:username] == "jacksrf" %>
 <%= form_for @user, url: {action: 'update'} do |f| %>
  <%= f.label :username %>
  <%= f.text_field :username %>
@@ -32,3 +100,13 @@
  </br >
  <%= f.submit "update"%>
  <% end %>
+
+ <% else %>
+
+ <h1>YOU DONT HAVE AUTHORIZATION FOR THIS PAGE!</h1>
+ <%= link_to "go back", user_lists_path(session[:user_id]) %>
+ <% end %>
+
+ </div>
+</div>
+</div>

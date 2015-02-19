@@ -52,9 +52,9 @@
             <button>LOGOUT</button>
           </form></li>
         <li class="dropdown pull-right">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">SETTINGS<b class="caret"></b></a>
             <ul class="dropdown-menu">
-                
+                <li><%= link_to "PROFILE", user_path(session[:user_id]) %></li>
                 <% if session[:username] == "jacksrf" %>
                 <li><%= link_to "ADMIN", users_path %></li>
                 <% end %>

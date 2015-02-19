@@ -52,41 +52,42 @@
             <button>LOGOUT</button>
           </form></li>
         <li class="dropdown pull-right">
-            <a href="#" data-toggle="dropdown" class="dropdown-toggle">SETTINGS<b class="caret"></b></a>
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><%= link_to "PROFILE", user_path(session[:user_id]) %></li>
-                <% if session[:username] == "jacksrf" %>
-                <li><%= link_to "ADMIN", users_path %></li>
-                <% end %>
+
+                <li><a href="#">Settings</a></li>
             </ul>
         </li>
     </ul>
     <hr id="headerDivider">
 
-    <div id="main-container" class="container-fluid">
-          <div class="row">
-            <div id="main-content" class="col-md-11 col-md-offset-1">
 
-              <% if session[:user_id] == params[:id].to_i || session[:username] == "jacksrf" %>
+<div id="main-container" class="container-fluid">
+      <div class="row">
 
-              <div>Your Profile Info:</div>
-            </br>
-              <div>Username: <%= @user.username %></div>
-              <div>First name: <%= @user.first_name %></div>
-              <div>Last name: <%= @user.last_name %></div>
-              <div>Phone:</div>
-              <div>Email:</div>
-              <div>Address:</div>
-            </br>
-            </br>
-              <%= link_to "EDIT PROFILE", edit_user_path, :class => "groupButton width" %>
-              <%= link_to "CHANGE PASSWORD", new_profile_path, :class => "groupButton width" %>
-              <% else %>
+        <div id="main-content" class="col-md-10">
+          <%= form_for @profile do |f| %>
+           <%= f.label :current_password, :class => "passwordReset" %>
+           <%= f.text_field :current_password %>
+           </br >
+            <%= f.label :new_password, :class => "passwordReset" %>
+            <%= f.text_field :new_password %>
+            </br >
+             <%= f.label :confirm_password, :class => "passwordReset" %>
+             <%= f.text_field :confirm_password %>
+             </br >
 
-              <h1>YOU DONT HAVE AUTHORIZATION FOR THIS PAGE!</h1>
-              <%= link_to "go back", user_lists_path(session[:user_id]) %>
-              <% end %>
-            </div>
-          </div>
+           <%= f.submit "SUBMIT"%>
+          <% end %>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
-      </div>
+
+
+
+
+        </div>
+        </div>

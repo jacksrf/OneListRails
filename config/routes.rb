@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     resources :images
   end
 
+  resources :profiles do
+    resources :user
+  end
+  
   resources :logins
   resources :members
   resources :invites

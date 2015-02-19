@@ -202,3 +202,8 @@ text-align: center;
 label {
 width: 100px;
 }
+
+label.passwordReset {
+width: 130px;
+text-align: center;
+}

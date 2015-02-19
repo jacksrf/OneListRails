@@ -40,9 +40,8 @@ gem 'httparty'
 gem 'rails_12factor'
 gem 'nokogiri'
 gem 'semantics3'
-gem 'jquery-ui-rails', '~> 5.0.3'
 gem 'jquery-rails', '~> 4.0.3'
-gem "font-awesome-rails"
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
