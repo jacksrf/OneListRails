@@ -127,7 +127,6 @@
     </br>
     </br>
 <div class="row">
-          <!-- <h4>The List: </h4> -->
           <% if @group.creator_id == session[:user_id]%>
           <% @items.each do |item| %>
               <div id="items" class="col-md-3">
@@ -215,9 +214,9 @@
         <% end %>
       </div>
     </div>
-  </div>
+  
 <div class="row">
-      <h4>Your List: </h4>
+      <h4 class="groupList">Your List: </h4>
 
       <% @items.each do |item| %>
           <div id="itemIndex" class="col-md-2">

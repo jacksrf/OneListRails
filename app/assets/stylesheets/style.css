@@ -207,3 +207,12 @@ label.passwordReset {
 width: 130px;
 text-align: center;
 }
+
+h4.groupList {
+width: 200px;
+border: 1px solid;
+text-align: center;
+padding-top: 5px;
+padding-bottom: 5px;
+margin-top: 50px;
+}
