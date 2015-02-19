@@ -54,7 +54,7 @@
         <li class="dropdown pull-right">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">PROFILE <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                
+
                 <li><a href="#">Settings</a></li>
             </ul>
         </li>
@@ -93,6 +93,10 @@
     <% if @group.creator_id == session[:user_id]%>
       <div id="delete" class="groupButton width"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
     <% end %>
+    <% if @group.creator_id != session[:user_id] && @group.multi_list %>
+      <% multiListId = MultiList.find_by(user_id: session[:user_id]) %>
+      <div id="delete" class="groupButton width"><%= link_to "LEAVE GROUP", group_member_path(@group, multiListId), :method=> "delete" %></div>
+      <% end %>
     </div>
   </div>
 <div class="row">
@@ -108,42 +112,6 @@
           </div>
         <% end %>
 
-
-
-
-
-<!-- LINK TO LEAVE A MULTI LIST GROUP -->
-      <% if @group.creator_id != session[:user_id] && @group.multi_list %>
-        <% multiListId = MultiList.find_by(user_id: session[:user_id]) %>
-        <%= link_to "LEAVE GROUP", group_member_path(@group, multiListId), :method=> "delete" %>
-      <% end %>
-
     </div>
-    <!-- <div id="sidebar" class="col-md-2">
-      <div class="well well-large">
-        invite link
-        <% if @group.creator_id == session[:user_id]%>
-          <div><%= link_to "Invite", new_group_invite_path(@group.id) %></div>
-        <% end %>
-        <div class="row">
-          <div class="col-md-offset-1"><%= link_to "Group Home", group_path(@group.id)  %></div>
-        </div>
-        <h6>Group Members: </h6>
-        <% @multiLists.each do |multiList| %>
-          <% if multiList.user_id != session[:user_id] %>
-            <% user = User.find_by(id: multiList.user_id) %>
-            <% group = Group.find_by(id: multiList.group_id) %>
-            <div class="row">
-              <div class="col-md-offset-1"><%= link_to user.username, group_multi_list_path(group.id,multiList.id) %></div>
-            </div>
-          <% end %>
-        <% end %>
-        </div>
-        LINK TO DELETE GROUP
-              <% if @group.creator_id == session[:user_id]%>
-                <div id="addButton" class="btn btn-danger"><%= link_to "DELETE GROUP", group_path, :method=> "delete" %></div>
-              <% end %>
-
-    </div> -->
   </div>
 </div>

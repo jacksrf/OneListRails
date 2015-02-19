@@ -17,16 +17,23 @@ def index
 end
 
 def create
-  @invite = Invite.create(invite_params)
-  @group = Group.find_by(id: invite_params[:group_id])
-  @user = User.find_by(id: @group.creator_id)
-  UserNotifier.send_invite_email(@invite, @user).deliver
-  redirect_to group_path(params[:group_id])
+  @invites = Invite.where(group_id: params[:invite][:group_id], email: params[:invite][:email])
+  if @invites.length == 0
+    @invite = Invite.create(invite_params)
+    @group = Group.find_by(id: invite_params[:group_id])
+    @user = User.find_by(id: @group.creator_id)
+    UserNotifier.send_invite_email(@invite, @user).deliver
+    redirect_to group_path(params[:group_id])
+  else
+    redirect_to :back
+  end
 end
 
 def destroy
   @invite = Invite.find_by(id: params[:id])
-  @invite.destroy
+  if @invite.present?
+    @invite.destroy
+  end
   redirect_to group_path(params[:group_id])
 end
 

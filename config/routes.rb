@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   resources :profiles do
     resources :user
   end
-  
+
+  resources :sessions
   resources :logins
   resources :members
   resources :invites

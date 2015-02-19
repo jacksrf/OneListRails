@@ -24,6 +24,9 @@
        <%= f.label :password %>
        <%= f.password_field :password %>
        </br >
+       <%= f.label :password_confirmation %>
+       <%= f.password_field :password_confirmation %>
+       </br >
        <%= f.label :first_name %>
        <%= f.text_field :first_name %>
        </br >
@@ -53,8 +56,6 @@
        </br > -->
        <%= f.submit "Sign Up"%>
       <% end %>
-    </br>
-      <%= link_to "Forgot username or password? Click here!", new_login_path %> 
     </div>
   </div>
 </div>

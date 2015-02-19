@@ -13,10 +13,16 @@ class UsersController < ApplicationController
   end
 
   def create
+    if params[:user][:password] == params[:user][:password_confirmation]
     @user = User.create(user_params)
-    if @user.save
-      UserNotifier.send_signup_email(@user).deliver
-      redirect_to '/'
+      if @user.save
+        UserNotifier.send_signup_email(@user).deliver
+        session[:user_id] = @user.id
+        session[:username] = @user.username
+        redirect_to '/'
+      else
+        render :new
+      end
     else
       render :new
     end
