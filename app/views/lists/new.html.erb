@@ -53,12 +53,7 @@
               <%end%>
               <%end%>
               </ul>
-              <% if @invites.length == 0 %>
-                <li><%= link_to "INVITES", invites_path %></li>
-              <% else %>
-                <% inviteTitle = "INVITES" + " ( " + @invites.length.to_s + " )"%>
-                <li><%= link_to inviteTitle, invites_path %></li>
-                <% end %>
+
           <li class="pull-right"><form method="POST" action="/session">
             <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
             <input name="_method" value="DELETE" type="hidden">
@@ -73,6 +68,9 @@
                 <% end %>
             </ul>
         </li>
+        <% currentUser = User.find_by(id: session[:user_id]) %>
+        <% currentName = currentUser.first_name + " " + currentUser.last_name %>
+        <li id="name" class="pull-right">HELLO, <%= currentName.upcase %></li>
     </ul>
     <hr id="headerDivider">
 
