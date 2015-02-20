@@ -18,6 +18,7 @@ class UserNotifier < ApplicationMailer
 
   def send_reset_email(user,password)
     @user = user
+    @random_password = password
     mail( :to => @user.email,
     :subject => 'Reset your OneList. password!',
     :other => @random_password)
