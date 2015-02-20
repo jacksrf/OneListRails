@@ -13,6 +13,7 @@ end
 
 def show
   @multiList = MultiList.find_by(id: params[:id])
+  
   @group = Group.find_by(id: params[:group_id])
   @list = List.find_by(id: @multiList.list_id)
   @items = Item.where(list_id: @list.id)
