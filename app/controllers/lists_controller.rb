@@ -17,6 +17,7 @@ class ListsController < ApplicationController
     @list = List.find_by(id: params[:id])
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
+    @multiLists = MultiList.where(user_id: session[:user_id])
     @members = Member.where(name: session[:username])
     @items = Item.where(list_id: @list.id)
     @user = User.find_by(id: session[:user_id])

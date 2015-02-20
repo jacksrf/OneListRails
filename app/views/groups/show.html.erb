@@ -90,26 +90,6 @@
           <% if @group.creator_id == session[:user_id]%>
             <div id="inviteButton" class="groupButton width"><%= link_to "INVITE", new_group_invite_path(@group.id) %></div>
           <% end %>
-<!-- GROUP MEMBER LIST-->
-          <!-- <h4>Group Members: </h4>
-          <% @members.each do |member| %>
-              <div class="row">
-                <div class="col-md-7"><%= member.name %></div>
-              </div>
-            <% end %> -->
-<!-- LIST OF INVITES THAT ARE OUT-->
-          <!-- <% if @group.creator_id == session[:user_id]%>
-          <h4>Invites out: </h4>
-          <% @invites.each do |invite| %>
-              <div id="inline">
-                <div id="name"><%= invite.name %></div>
-                <div id="addButton" class="btn btn-danger"><%= link_to "delete", group_invite_path(@group,invite.id), :method=> "delete" %></div>
-              </div>
-                </br>
-
-
-            <% end %>
-          <% end %> -->
 
 <!-- THE LIST FOR SINGLE LIST GROUPS-->
           <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
@@ -226,7 +206,7 @@
                     <% group = Group.find_by(id: multiList.group_id) %>
                     <% @name = @userMulti.first_name + " " + @userMulti.last_name %>
                       <li><%= link_to @name.upcase, group_multi_list_path(group.id,multiList.id) %></li>
-                      <% binding.pry %>
+                
                   <% elsif multiList.user_id == session[:user_id]%>
                   <% yourMultiList = MultiList.find_by(user_id: session[:user_id])%>
                     <li><%= link_to "YOUR LIST", group_multi_list_path(@group.id, yourMultiList) %></li>
