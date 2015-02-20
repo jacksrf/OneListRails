@@ -219,7 +219,7 @@
       <% items = Item.where(list_id: @multiList.list_id) %>
       <div class="row">
         <div class="groupNav col-md-9">
-          <% binding.pry %>
+          
       <% items.each do |item| %>
           <div id="itemIndex" class="col-md-3">
             <div><img id="imgIndex" src="<%= item.image_url %>"></div>
