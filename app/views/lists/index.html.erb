@@ -84,13 +84,13 @@
           <% @invites.each do |invite| %>
               <% group = Group.find_by(id: invite.group_id) %>
               <% if group.single_list %>
-              <div class="alert alert-warning" role="alert">
+              <div id="invite" class="alert alert-warning" role="alert">
               <%= group.name %>
               <%= link_to "accept", new_group_member_path(group) %>
               <%= link_to "decline", group_invite_path(group,invite), :confirm => "Are you sure?", :method=>"delete" %>
               </div>
               <% elsif group.multi_list %>
-              <div class="alert alert-warning" role="alert">
+              <div id="invite" class="alert alert-warning" role="alert">
               <%= group.name %>
               <%= link_to "accept", new_group_multi_list_path(group) %>
               <%= link_to "decline", group_invite_path(group,invite), :confirm => "Are you sure?", :method=>"delete" %>

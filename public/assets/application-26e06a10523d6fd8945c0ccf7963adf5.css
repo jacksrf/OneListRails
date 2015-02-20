@@ -9629,6 +9629,44 @@ li#name {
 margin-top: 28px;
 margin-right: 10px;
 }
+
+div#invite {
+width: 400px;
+}
+
+div#invite a {
+margin-left: 44px;
+border: 1px solid rgba(250,104,0,0.4);
+color: black;
+padding: 5px;
+background-color: rgba(250,104,0,0.2);
+text-decoration: none;
+}
+
+div#invite a:hover {
+  background-color: rgba(250,104,0,1)
+}
+
+div#signup {
+text-decoration: none;
+width: 100px;
+border: 1px solid lightgrey;
+padding: 10px;
+margin-bottom: 25px;
+text-align: center;
+color: black;
+}
+
+div#signup a {
+text-decoration: none;
+color: black;
+}
+
+div#signup:hover {
+text-decoration: none;
+color: black;
+background-color: rgba(0,255,255,.3);
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
