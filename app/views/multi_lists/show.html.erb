@@ -118,11 +118,13 @@
 
     <div class="groupNav col-md-9">
       <% if @multiList.user_id == session[:user_id]%>
+        <% if @group.creator_id == session[:user_id]%>
         <div id="inviteButton" class="groupButton width"><%= link_to "INVITE", new_group_invite_path(@group.id) %></div>
+        <% end %>
         <% userList = List.find_by(id: @group.list_id, user_id: session[:user_id])%>
         <% listsNow = List.where(user_id: session[:user_id]) %>
         <% listsNow.each do |list| %>
-          <% if @multiList.list_id == list %>
+          <% if @multiList.list_id == list.id %>
         <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
           <% end %>
         <% end %>
@@ -219,7 +221,7 @@
       <% items = Item.where(list_id: @multiList.list_id) %>
       <div class="row">
         <div class="groupNav col-md-9">
-          
+
       <% items.each do |item| %>
           <div id="itemIndex" class="col-md-3">
             <div><img id="imgIndex" src="<%= item.image_url %>"></div>

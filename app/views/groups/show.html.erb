@@ -167,9 +167,11 @@
 
       <div class="groupNav col-md-9">
       <% if @group.creator_id == session[:user_id]%>
-        <div id="inviteButton" class="groupButton width"><%= link_to "INVITE", new_group_invite_path(@group.id) %></div>
+        <% if @group.creator_id == session[:user_id]%>
+          <div id="inviteButton" class="groupButton width"><%= link_to "INVITE", new_group_invite_path(@group.id) %></div>
+        <% end %>
         <% userList = List.find_by(id: @group.list_id, user_id: session[:user_id])%>
-        <% if params[:list_id] == userList.id %>
+        <% if session[:user_id] == @group.creator_id %>
           <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
         <% end %>
         <div id="sortPrice" class="groupButton width"><%= link_to "SORT BY PRICE", group_path(@group.id, :sort => "price") %></div>
@@ -190,7 +192,7 @@
         <% elsif @group.creator_id != session[:user_id] %>
           <% multi_list = MultiList.find_by(group_id: @group.id, user_id: session[:user_id])%>
           <% userList = List.find_by(id: multi_list.list_id)%>
-          <% if params[:list_id] == userList.id %>
+          <% if session[:user_id] == @group.creator_id %>
             <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
           <% end %>
           <div id="sortPrice" class="groupButton width"><%= link_to "SORT BY PRICE", group_path(@group.id, :sort => "price") %></div>
@@ -206,7 +208,7 @@
                     <% group = Group.find_by(id: multiList.group_id) %>
                     <% @name = @userMulti.first_name + " " + @userMulti.last_name %>
                       <li><%= link_to @name.upcase, group_multi_list_path(group.id,multiList.id) %></li>
-                
+
                   <% elsif multiList.user_id == session[:user_id]%>
                   <% yourMultiList = MultiList.find_by(user_id: session[:user_id])%>
                     <li><%= link_to "YOUR LIST", group_multi_list_path(@group.id, yourMultiList) %></li>
