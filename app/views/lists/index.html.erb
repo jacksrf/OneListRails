@@ -27,7 +27,8 @@
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUPS <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <% if @groups.empty? && @members.empty? && @multiLists.empty? %>
+                
+                <% if @groups  && @members.empty? && @multiLists.empty? %>
                   <li>No Groups Yet</li>
                 <% else %>
                 <% @groups.each do |group| %>
