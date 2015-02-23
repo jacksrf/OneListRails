@@ -6,6 +6,7 @@ require 'open-uri'
     @item = Item.find_by(id: params[:format])
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
+    @multiLists = MultiList.where(user_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
     @invites = Invite.where(email: @user.email, name: session[:username])
     @members = Member.where(name: session[:username])
@@ -27,6 +28,7 @@ require 'open-uri'
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @members = Member.where(name: session[:username])
+    @multiLists = MultiList.where(user_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
     @invites = Invite.where(email: @user.email)
     @item = Item.new

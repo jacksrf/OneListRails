@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     @members = Member.where(name: params[:username])
     @groups = Group.where(creator_id: session[:user_id])
     @user = User.find_by(id: session[:user_id])
+    @multiLists = MultiList.where(user_id: session[:user_id])
     @invites = Invite.where(email: @user.email)
   end
 
@@ -45,6 +46,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id: params[:id])
+    @lists = List.where(user_id: @user.id)
+    @lists.each do |list|
+      @items = Item.where(list_id: list.id)
+      @items.each do |item|
+        item.destroy
+      end
+      list.destroy
+    end
     @user.destroy
     redirect_to '/admin'
   end

@@ -14,7 +14,8 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find_by(id: params[:id])
+    if params[:type] == "firstList"
+    @list = List.find_by(user_id: params[:id].to_i)
     @lists = List.where(user_id: session[:user_id])
     @groups = Group.where(creator_id: session[:user_id])
     @multiLists = MultiList.where(user_id: session[:user_id])
@@ -22,6 +23,16 @@ class ListsController < ApplicationController
     @items = Item.where(list_id: @list.id)
     @user = User.find_by(id: session[:user_id])
     @invites = Invite.where(email: @user.email)
+  else
+    @list = List.find_by(id: params[:id].to_i)
+    @lists = List.where(user_id: session[:user_id])
+    @groups = Group.where(creator_id: session[:user_id])
+    @multiLists = MultiList.where(user_id: session[:user_id])
+    @members = Member.where(name: session[:username])
+    @items = Item.where(list_id: @list.id)
+    @user = User.find_by(id: session[:user_id])
+    @invites = Invite.where(email: @user.email)
+  end
   end
 
   def new
