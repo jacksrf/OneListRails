@@ -9519,6 +9519,16 @@ padding: 5px;
 width: 167px;
 margin-right: 5px;
 text-align: center;
+border-radius: 3px;
+color: black;
+text-decoration: none;
+}
+a.groupButton.width {
+  text-decoration: none;
+}
+
+a.groupButton.width:hover {
+  background-color: rgba(0,255,255,.3);
 }
 
 .groupNav {
@@ -9666,6 +9676,10 @@ div#signup:hover {
 text-decoration: none;
 color: black;
 background-color: rgba(0,255,255,.3);
+}
+
+a, h4 {
+border-radius: 3px;
 }
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
