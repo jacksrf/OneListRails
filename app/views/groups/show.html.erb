@@ -189,7 +189,6 @@
           </div>
         <% elsif @group.creator_id != session[:user_id] %>
           <% multi_list = MultiList.find_by(group_id: @group.id, user_id: session[:user_id])%>
-          <% binding.pry %>
           <% userList = List.find_by(id: multi_list.list_id)%>
           <% if session[:user_id] == @group.creator_id %>
             <div id="addItemButton" class="groupButton width"><%= link_to "ADD ITEM", new_list_item_path(@list.id) %></div>
