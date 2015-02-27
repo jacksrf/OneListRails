@@ -3,13 +3,13 @@ development:
   encoding: unicode
   database: onelist_development
   pool: 5
-  username: jacksrf
-  password: trey33
+  username: rolanjackson
+  password:
 
 test:
   adapter: postgresql
   encoding: unicode
   database: onelist_test
   pool: 5
-  username: jacksrf
-  password: trey33
+  username: rolanjackson
+  password: 

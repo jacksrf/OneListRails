@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :multi_lists
   resources :items
   resources :images
+  resources :products
 
   get '/signup' => 'users#new'
   get '/login' => 'session#new'

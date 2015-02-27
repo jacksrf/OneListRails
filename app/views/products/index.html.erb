@@ -27,7 +27,8 @@
           <li class="dropdown">
               <a href="#" data-toggle="dropdown" class="dropdown-toggle">GROUPS <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <% if @groups.empty? && @members.empty? && @multiLists.empty? %>
+
+                <% if @groups  && @members.empty? && @multiLists.empty? %>
                   <li>No Groups Yet</li>
                 <% else %>
                 <% @groups.each do |group| %>
@@ -53,12 +54,7 @@
               <%end%>
               <%end%>
               </ul>
-              <% if @invites.length == 0 %>
-                <li><%= link_to "INVITES", invites_path %></li>
-              <% else %>
-                <% inviteTitle = "INVITES" + " ( " + @invites.length.to_s + " )"%>
-                <li><%= link_to inviteTitle, invites_path %></li>
-                <% end %>
+
           <li class="pull-right"><form method="POST" action="/session">
             <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
             <input name="_method" value="DELETE" type="hidden">
@@ -73,54 +69,28 @@
                 <% end %>
             </ul>
         </li>
+        <% currentUser = User.find_by(id: session[:user_id]) %>
+        <% currentName = currentUser.first_name + " " + currentUser.last_name %>
+        <li id="name" class="pull-right">HELLO, <%= currentName.upcase %></li>
     </ul>
     <hr id="headerDivider">
 
 
-<div id="main-container" class="container-fluid">
-      <div class="row">
-        <div id="main-content" class="col-md-10">
-<h1> Add item to <%= @list.name %>: </h1>
+        <div>
+    <% @searchResults.each do |item| %>
 
-<%= form_for [@list,@item] do |f| %>
- <%= f.label :name %>
- <%= f.text_field :name %>
- </br >
- <%= f.label :url %>
- <%= f.text_field :url %>
-  </br >
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  </br >
-  <%= f.label :quantity %>
-  <%= f.text_field :quantity %>
-  </br >
- <%= f.hidden_field :list_id, :value => @list.id %>
- <%= f.hidden_field :bought, :value => false %>
- <%= f.hidden_field :user_id, :value => session[:user_id] %>
- <%= f.hidden_field :type, :value => "add" %>
- </br >
- <%= f.submit "Add Item"%>
-<% end %>
-</br >
-</br >
-<%= form_for [@list,@item] do |f| %>
- <%= f.text_field :name %>
- </br >
- <%= f.hidden_field :url, :value => "" %>
- <%= f.hidden_field :price, :value => "" %>
- <%= f.hidden_field :quantity, :value => "" %>
- <%= f.hidden_field :list_id, :value => "" %>
- <%= f.hidden_field :bought, :value => "" %>
- <%= f.hidden_field :user_id, :value => "" %>
- <%= f.hidden_field :type, :value => "search" %>
- </br >
-<%= f.submit "Search"%>
-<% end %>
-
-
-</div>
-
-
-</div>
-</div>
+        <div class="searchIndex">
+          <div><a href="<%= item[:url] %>"><%= item[:name] %></a></div>
+          <div>Price: <%= number_to_currency(item[:price].to_i) %></div>
+          <div>UPC: <%= item[:upc] %></div>
+          <div>Sem3 Id: <%= item[:sem3_id] %></div>
+          <div>Model: <%= item[:model] %></div>
+          <div>Brand: <%= item[:brand] %></div>
+          <div>Color: <%= item[:color] %></div>
+          <div>SKU: <%= item[:sku] %></div>
+          <div>Seller: <%= item[:seller] %></div>
+        </div>
+      </br>
+    </br>
+      <% end %>
+    </div>

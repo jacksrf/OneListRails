@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
 require 'nokogiri'
 require 'open-uri'
+
+
+
   def index
     @images = []
     @item = Item.find_by(id: params[:format])
@@ -35,12 +38,16 @@ require 'open-uri'
   end
 
   def create
-    @images = []
-    @list = List.find_by(user_id: session[:user_id])
-    @groups = Group.where(creator_id: session[:user_id])
-    @members = Member.where(name: session[:username])
-    @item = Item.create(item_params)
-    redirect_to items_path(@item)
+    if params[:item][:type] == "add"
+      @images = []
+      @list = List.find_by(user_id: session[:user_id])
+      @groups = Group.where(creator_id: session[:user_id])
+      @members = Member.where(name: session[:username])
+      @item = Item.create(item_params)
+      redirect_to items_path(@item)
+    elsif params[:item][:type] == "search"
+      redirect_to products_path( :search => params[:item][:name])
+    end
   end
 
   def edit
